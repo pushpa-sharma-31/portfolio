@@ -4,8 +4,14 @@
     "greet": "Hello, I'm",
     "name": "Pushpa Sharma",
     "rolePrefix": "AI/ML Engineer — ",
-    "roles": ["Agentic AI", "Gen AI Systems", "RAG Pipelines", "LLM Engineering", "Multi-Agent Workflows"],
-    "tagline": "9 years of software engineering, 3+ years designing end-to-end Gen AI systems: RAG pipelines, multi-agent workflows, and conversational AI for banking, automotive, and healthcare."
+    "roles": [
+      "Agentic AI",
+      "Gen AI Systems",
+      "RAG Pipelines",
+      "LLM Engineering",
+      "Multi-Agent Workflows"
+    ],
+    "tagline": "9 years of software engineering, 4+ years designing end-to-end Gen AI systems: RAG pipelines, multi-agent workflows, and conversational AI for banking, automotive, and healthcare."
   },
   "contact": {
     "email": "pushpa2431sharma@gmail.com",
@@ -22,17 +28,83 @@
       "Proficient in <strong>Python, LangChain/LangGraph, TensorFlow, PyTorch</strong>, and vector databases, with scalable deployment via <strong>FastAPI, Docker, and Kubernetes</strong>."
     ],
     "stats": [
-      { "value": "9+", "label": "years in software engineering" },
-      { "value": "3+", "label": "years shipping Gen AI to prod" },
-      { "value": "40%", "label": "model compute time reduced" },
-      { "value": "20%", "label": "user engagement increase" }
+      {
+        "value": "9+",
+        "label": "years in software engineering"
+      },
+      {
+        "value": "3+",
+        "label": "years shipping Gen AI to prod"
+      },
+      {
+        "value": "40%",
+        "label": "model compute time reduced"
+      },
+      {
+        "value": "20%",
+        "label": "user engagement increase"
+      }
     ]
   },
   "skills": [
-    { "group": "gen_ai & agents", "items": ["LLM Integration — GPT · Claude · Gemini · Llama", "Agentic AI", "RAG & Advanced RAG", "Prompt Engineering", "Fine-Tuning", "Function Calling", "MCP", "Semantic Search"] },
-    { "group": "frameworks", "items": ["LangChain", "LangGraph", "LangSmith", "LlamaIndex", "AutoGen", "CrewAI", "Hugging Face", "TensorFlow", "PyTorch", "Scikit-learn", "XGBoost"] },
-    { "group": "data & infra", "items": ["Pinecone", "FAISS", "Chroma", "Weaviate", "PostgreSQL", "NumPy / Pandas", "Azure OpenAI", "AWS Bedrock", "Databricks", "Ollama"] },
-    { "group": "engineering", "items": ["Python", "FastAPI", "Flask", "LLMOps / MLOps", "CI/CD for LLMs", "Model Versioning", "Docker / Kubernetes", "Git", "React.js / Next.js"] }
+    {
+      "group": "gen_ai & agents",
+      "items": [
+        "LLM Integration — GPT · Claude · Gemini · Llama",
+        "Agentic AI",
+        "RAG & Advanced RAG",
+        "Prompt Engineering",
+        "Fine-Tuning",
+        "Function Calling",
+        "MCP",
+        "Semantic Search"
+      ]
+    },
+    {
+      "group": "frameworks",
+      "items": [
+        "LangChain",
+        "LangGraph",
+        "LangSmith",
+        "LlamaIndex",
+        "AutoGen",
+        "CrewAI",
+        "Hugging Face",
+        "TensorFlow",
+        "PyTorch",
+        "Scikit-learn",
+        "XGBoost"
+      ]
+    },
+    {
+      "group": "data & infra",
+      "items": [
+        "Pinecone",
+        "FAISS",
+        "Chroma",
+        "Weaviate",
+        "PostgreSQL",
+        "NumPy / Pandas",
+        "Azure OpenAI",
+        "AWS Bedrock",
+        "Databricks",
+        "Ollama"
+      ]
+    },
+    {
+      "group": "engineering",
+      "items": [
+        "Python",
+        "FastAPI",
+        "Flask",
+        "LLMOps / MLOps",
+        "CI/CD for LLMs",
+        "Model Versioning",
+        "Docker / Kubernetes",
+        "Git",
+        "React.js / Next.js"
+      ]
+    }
   ],
   "jobs": [
     {
@@ -136,8 +208,16 @@
     }
   ],
   "education": [
-    { "degree": "Diploma, Data Science & AI", "school": "IIIT Bangalore", "years": "2025 – 2026" },
-    { "degree": "B.Tech", "school": "Biju Patnaik University of Technology", "years": "2012 – 2016" }
+    {
+      "degree": "Diploma, Data Science & AI",
+      "school": "IIIT Bangalore",
+      "years": "2025 – 2026"
+    },
+    {
+      "degree": "B.Tech",
+      "school": "Biju Patnaik University of Technology",
+      "years": "2012 – 2016"
+    }
   ],
   "achievements": [
     "Reduced model computation time by <b>40%</b> through ensemble optimization while maintaining accuracy.",
