@@ -1,0 +1,146 @@
+{
+  "hero": {
+    "avail": "Open to opportunities",
+    "greet": "Hello, I'm",
+    "name": "Pushpa Sharma",
+    "rolePrefix": "AI/ML Engineer — ",
+    "roles": ["Agentic AI", "Gen AI Systems", "RAG Pipelines", "LLM Engineering", "Multi-Agent Workflows"],
+    "tagline": "9 years of software engineering, 3+ years designing end-to-end Gen AI systems: RAG pipelines, multi-agent workflows, and conversational AI for banking, automotive, and healthcare."
+  },
+  "contact": {
+    "email": "pushpa2431sharma@gmail.com",
+    "phone": "+918197709916",
+    "phoneDisplay": "+91 81977 09916",
+    "linkedin": "https://linkedin.com/in/pushpa-sharma-bbab56125",
+    "github": "https://github.com/pushpa-sharma-31",
+    "location": "Bengaluru, India"
+  },
+  "about": {
+    "paras": [
+      "AI Engineer with <strong>9 years of software engineering experience</strong>, including <strong>3+ years building production Gen AI, Agentic AI, and ML applications</strong> for banking, automotive, and healthcare clients.",
+      "I design and ship end-to-end AI solutions — RAG pipelines, LLM integrations, multi-agent systems, and conversational AI — underpinned by 6 years of full-stack product engineering across banking, healthcare, media, and security domains.",
+      "Proficient in <strong>Python, LangChain/LangGraph, TensorFlow, PyTorch</strong>, and vector databases, with scalable deployment via <strong>FastAPI, Docker, and Kubernetes</strong>."
+    ],
+    "stats": [
+      { "value": "9+", "label": "years in software engineering" },
+      { "value": "3+", "label": "years shipping Gen AI to prod" },
+      { "value": "40%", "label": "model compute time reduced" },
+      { "value": "20%", "label": "user engagement increase" }
+    ]
+  },
+  "skills": [
+    { "group": "gen_ai & agents", "items": ["LLM Integration — GPT · Claude · Gemini · Llama", "Agentic AI", "RAG & Advanced RAG", "Prompt Engineering", "Fine-Tuning", "Function Calling", "MCP", "Semantic Search"] },
+    { "group": "frameworks", "items": ["LangChain", "LangGraph", "LangSmith", "LlamaIndex", "AutoGen", "CrewAI", "Hugging Face", "TensorFlow", "PyTorch", "Scikit-learn", "XGBoost"] },
+    { "group": "data & infra", "items": ["Pinecone", "FAISS", "Chroma", "Weaviate", "PostgreSQL", "NumPy / Pandas", "Azure OpenAI", "AWS Bedrock", "Databricks", "Ollama"] },
+    { "group": "engineering", "items": ["Python", "FastAPI", "Flask", "LLMOps / MLOps", "CI/CD for LLMs", "Model Versioning", "Docker / Kubernetes", "Git", "React.js / Next.js"] }
+  ],
+  "jobs": [
+    {
+      "title": "AI/ML Engineer",
+      "org": "TEKsystems (NatWest Bank)",
+      "meta": "2025 – Present · Bengaluru",
+      "current": true,
+      "sections": [
+        {
+          "project": "Agent Toolkit AI — Gen AI modernization of the bank-agent platform",
+          "bullets": [
+            "Modernized the legacy Bank Agent Toolkit into an AI-powered application; built RAG pipelines to securely retrieve customer information from internal databases and knowledge sources.",
+            "Developed AI-powered assistants for income analysis, planning recommendations, and direct-debit setup; built prompt templates and chaining logic with LangChain and LangGraph.",
+            "Enabled semantic search of financial records with FAISS/vector databases; integrated LLM inference and embeddings via Azure OpenAI and FastAPI."
+          ]
+        },
+        {
+          "project": "Ask Archie — Gen AI employee-support assistant",
+          "bullets": [
+            "Built an LLM-based assistant (OpenAI GPT, LangChain, Pinecone/Weaviate) answering workplace queries from company policy docs, FAQs, and the knowledge base via RAG.",
+            "Designed confidence-based fallback and escalation: low-confidence or dissatisfied users are auto-transferred to live human support over WebSocket/SignalR.",
+            "Exposed real-time LLM inference and ML models as REST APIs with FastAPI; designed and developed the employee-facing chatbot UI."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Senior Software Engineer, AI",
+      "org": "Grid Dynamics (Ford)",
+      "meta": "03/2024 – 01/2025 · Bengaluru",
+      "current": false,
+      "sections": [
+        {
+          "project": "Agentic AI vehicle-exploration chatbot",
+          "bullets": [
+            "Built an Agentic AI chatbot (GPT-4, Claude, LLaMA with LangChain/LangGraph) that helps customers explore Ford vehicles — design imagery, specs, pricing, and availability.",
+            "Enabled agent tool-calling against external APIs (availability, pricing, dealership information) via an MCP server; implemented a RAG pipeline over Ford's vehicle database using Pinecone.",
+            "Optimized models using ensemble techniques, reducing computation time by 40% while maintaining model performance; exposed AI/ML models as FastAPI services.",
+            "Built the conversational React.js interface and collaborated with UX designers to integrate AI seamlessly into the product experience."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Senior Software Engineer",
+      "org": "Emids (Humana)",
+      "meta": "08/2022 – 04/2024 · Bengaluru",
+      "current": false,
+      "sections": [
+        {
+          "project": "",
+          "bullets": [
+            "Integrated an AI system into the Solara single-sign-on portal for medical employees; designed AI algorithms that improved predictive capability on client data (PyTorch, TensorFlow, Hugging Face, vector DBs).",
+            "Applied prompt engineering to early Gen AI features; developed reusable components in Next.js and React.js and built supporting services in Node.js and Python."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Advisory System Analyst",
+      "org": "IBM",
+      "meta": "01/2022 – 07/2022 · Bengaluru",
+      "current": false,
+      "sections": [
+        {
+          "project": "",
+          "bullets": [
+            "Implemented ML/DL models in production (TensorFlow, PyTorch, Scikit-learn, XGBoost) with data processing in NumPy/Pandas, served through FastAPI and Flask.",
+            "Reduced API errors through Redux-Saga state management and built the React.js data-management UI over PostgreSQL/NoSQL stores."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "UI Stack Developer",
+      "org": "Innominds",
+      "meta": "03/2020 – 01/2022 · Bengaluru",
+      "current": false,
+      "sections": [
+        {
+          "project": "",
+          "bullets": [
+            "Developed the Vector Flow physical-security platform UI (React.js, Redux, Syncfusion), building reusable static and dynamic components for data-dense operational dashboards."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Software Engineer",
+      "org": "AH Infotech (Sony Music)",
+      "meta": "05/2017 – 03/2020 · Bengaluru",
+      "current": false,
+      "sections": [
+        {
+          "project": "",
+          "bullets": [
+            "Delivered the Artist 360 media and entertainment platform end to end, including full CRUD functionality (React.js, Node.js, Express, SQL, REST APIs)."
+          ]
+        }
+      ]
+    }
+  ],
+  "education": [
+    { "degree": "Diploma, Data Science & AI", "school": "IIIT Bangalore", "years": "2025 – 2026" },
+    { "degree": "B.Tech", "school": "Biju Patnaik University of Technology", "years": "2012 – 2016" }
+  ],
+  "achievements": [
+    "Reduced model computation time by <b>40%</b> through ensemble optimization while maintaining accuracy.",
+    "Increased user engagement by <b>20%</b> by delivering impactful, AI-powered product features."
+  ]
+}

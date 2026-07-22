@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin — Portfolio Content</title>
+<meta name="robots" content="noindex, nofollow" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#0F1412; --surface:#161D19; --surface-2:#1C2620; --line:#28342D;
+  --ink:#E9EDE9; --muted:#8FA096; --acc:#8FC7A8; --acc-2:#E3B65D;
+  --ok:#7FD99A; --err:#E88484; --on-acc:#0F1412; --radius:14px;
+  --display:"Space Grotesk",sans-serif; --body:"IBM Plex Sans",sans-serif; --mono:"IBM Plex Mono",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.55;padding:32px 20px 80px}
+.wrap{max-width:860px;margin:0 auto}
+a{color:var(--acc)}
+:focus-visible{outline:2px solid var(--acc-2);outline-offset:2px;border-radius:4px}
+h1{font-family:var(--display);font-size:1.6rem;letter-spacing:-.01em;display:flex;align-items:center;gap:12px}
+h1 .mono-badge{font-family:var(--mono);font-size:.66rem;color:var(--on-acc);background:var(--acc-2);border-radius:999px;padding:3px 10px;letter-spacing:.08em}
+.sub{color:var(--muted);font-size:.92rem;margin:8px 0 28px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;margin-bottom:18px}
+.panel h2{font-family:var(--display);font-size:1.05rem;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center}
+.panel h2 .tag{font-family:var(--mono);font-size:.68rem;color:var(--acc-2);font-weight:400}
+label{display:block;font-family:var(--mono);font-size:.72rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin:14px 0 6px}
+input,textarea,select{width:100%;background:var(--surface-2);border:1px solid var(--line);border-radius:9px;padding:11px 13px;color:var(--ink);font-family:var(--body);font-size:.93rem}
+textarea{resize:vertical;min-height:80px}
+textarea.mono{font-family:var(--mono);font-size:.82rem}
+input:focus,textarea:focus{outline:none;border-color:var(--acc)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.85rem;padding:11px 20px;border-radius:999px;border:1px solid var(--line);background:var(--surface-2);color:var(--ink);cursor:pointer;transition:border-color .2s}
+.btn:hover{border-color:var(--acc)}
+.btn-primary{background:var(--acc);border-color:var(--acc);color:var(--on-acc);font-weight:600}
+.btn-danger{border-color:var(--err);color:var(--err);background:transparent;font-size:.75rem;padding:6px 13px}
+.btn-sm{font-size:.75rem;padding:6px 13px}
+.status{font-family:var(--mono);font-size:.82rem;margin-top:12px;min-height:20px}
+.status.ok{color:var(--ok)} .status.err{color:var(--err)} .status.busy{color:var(--acc-2)}
+.hint{font-size:.8rem;color:var(--muted);margin-top:8px}
+.hint code{font-family:var(--mono);color:var(--acc);font-size:.76rem}
+#editor{display:none}
+.job-card,.skill-card,.edu-card{border:1px solid var(--line);border-radius:11px;padding:16px;margin-top:14px;background:var(--surface-2)}
+.job-card textarea,.skill-card textarea,.edu-card input,.job-card input{background:var(--surface)}
+.card-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.card-head b{font-family:var(--mono);font-size:.78rem;color:var(--acc)}
+.checkline{display:flex;align-items:center;gap:9px;margin-top:12px;font-size:.85rem;color:var(--muted)}
+.checkline input{width:auto}
+.savebar{position:sticky;bottom:0;background:var(--bg);border-top:1px solid var(--line);padding:16px 0;margin-top:8px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.who{font-family:var(--mono);font-size:.78rem;color:var(--muted)}
+.who b{color:var(--ok)}
+@media(max-width:640px){.row,.row3{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Portfolio Admin <span class="mono-badge">OWNER ONLY</span></h1>
+  <p class="sub">Edits are saved as commits to <code style="font-family:var(--mono)">content.json</code> in your GitHub repo. The live site updates automatically ~1 minute after saving. Only tokens with write access to the repo can save — that's the lock on this door.</p>
+
+  <!-- CONNECT -->
+  <div class="panel" id="connectPanel">
+    <h2>Sign in with GitHub <span class="tag">step 1</span></h2>
+    <div class="row3">
+      <div><label for="ghOwner">Repo owner</label><input id="ghOwner" autocomplete="off" /></div>
+      <div><label for="ghRepo">Repository</label><input id="ghRepo" autocomplete="off" /></div>
+      <div><label for="ghBranch">Branch</label><input id="ghBranch" value="main" autocomplete="off" /></div>
+    </div>
+    <label for="ghToken">Fine-grained personal access token</label>
+    <input id="ghToken" type="password" placeholder="github_pat_…" autocomplete="off" />
+    <p class="hint">Create one at <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a> → Repository access: <b>Only select repositories</b> → pick this repo → Permissions → <b>Contents: Read and write</b>. Never share it or commit it anywhere. It stays in this browser tab only.</p>
+    <div class="checkline"><input type="checkbox" id="rememberTok" /> <label for="rememberTok" style="margin:0;text-transform:none;letter-spacing:0;font-family:var(--body);font-size:.85rem">Remember for this browser session (cleared when tab closes)</label></div>
+    <div style="margin-top:16px;display:flex;gap:12px;align-items:center">
+      <button class="btn btn-primary" id="connectBtn">Connect &amp; load content</button>
+      <span class="status" id="connectStatus"></span>
+    </div>
+  </div>
+
+  <!-- EDITOR -->
+  <div id="editor">
+    <div class="panel"><span class="who" id="whoLine"></span></div>
+
+    <div class="panel">
+      <h2>Hero <span class="tag">top of page</span></h2>
+      <div class="row">
+        <div><label>Greeting</label><input id="f_greet" /></div>
+        <div><label>Name</label><input id="f_name" /></div>
+      </div>
+      <div class="row">
+        <div><label>Role prefix</label><input id="f_rolePrefix" /></div>
+        <div><label>Availability pill</label><input id="f_avail" /></div>
+      </div>
+      <label>Rotating role words (one per line)</label>
+      <textarea id="f_roles" class="mono"></textarea>
+      <label>Tagline</label>
+      <textarea id="f_tagline"></textarea>
+    </div>
+
+    <div class="panel">
+      <h2>Contact <span class="tag">buttons, form &amp; links</span></h2>
+      <div class="row">
+        <div><label>Email (messages land here)</label><input id="f_email" type="email" /></div>
+        <div><label>Phone — dial format (e.g. +918197709916)</label><input id="f_phone" /></div>
+      </div>
+      <div class="row">
+        <div><label>Phone — display format</label><input id="f_phoneDisplay" /></div>
+        <div><label>Location</label><input id="f_location" /></div>
+      </div>
+      <div class="row">
+        <div><label>LinkedIn URL</label><input id="f_linkedin" /></div>
+        <div><label>GitHub URL</label><input id="f_github" /></div>
+      </div>
+      <p class="hint">Changing the email also re-points the contact form. The new address gets a one-time FormSubmit activation email on the first message.</p>
+    </div>
+
+    <div class="panel">
+      <h2>About <span class="tag">paragraphs &amp; stats</span></h2>
+      <label>Paragraphs (one per line; &lt;strong&gt; allowed for bold)</label>
+      <textarea id="f_paras" style="min-height:130px"></textarea>
+      <label>Stats (one per line, format: value | label)</label>
+      <textarea id="f_stats" class="mono"></textarea>
+    </div>
+
+    <div class="panel">
+      <h2>Skills <span class="tag">grouped chips</span> <button class="btn btn-sm" id="addSkill">+ group</button></h2>
+      <div id="skillList"></div>
+    </div>
+
+    <div class="panel">
+      <h2>Experience <span class="tag">timeline</span> <button class="btn btn-sm" id="addJob">+ role</button></h2>
+      <p class="hint">Within a role, write each project as a line starting with <code>##</code>, followed by its bullet lines. Roles without projects: just bullet lines.</p>
+      <div id="jobList"></div>
+    </div>
+
+    <div class="panel">
+      <h2>Education &amp; achievements <span class="tag"></span> <button class="btn btn-sm" id="addEdu">+ education</button></h2>
+      <div id="eduList"></div>
+      <label>Key achievements (one per line; &lt;b&gt; allowed)</label>
+      <textarea id="f_achievements"></textarea>
+    </div>
+
+    <div class="savebar">
+      <button class="btn btn-primary" id="saveBtn">Save &amp; publish</button>
+      <button class="btn" id="downloadBtn">Download backup</button>
+      <span class="status" id="saveStatus"></span>
+    </div>
+  </div>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const API = 'https://api.github.com';
+let gh = { owner:'', repo:'', branch:'main', token:'' };
+let fileSha = null;
+
+/* prefill owner/repo from the URL when served on github.io */
+(function(){
+  const host = location.hostname, path = location.pathname.split('/').filter(Boolean);
+  if (host.endsWith('.github.io')){
+    $('ghOwner').value = host.replace('.github.io','');
+    if (path.length > 1 || (path.length === 1 && !path[0].endsWith('.html'))) $('ghRepo').value = path[0];
+  }
+  try {
+    const saved = sessionStorage.getItem('ghAdmin');
+    if (saved){ const s = JSON.parse(saved); $('ghOwner').value = s.owner||$('ghOwner').value; $('ghRepo').value = s.repo||$('ghRepo').value; $('ghBranch').value = s.branch||'main'; $('ghToken').value = s.token||''; $('rememberTok').checked = true; }
+  } catch(e){}
+})();
+
+function ghFetch(path, opts={}){
+  return fetch(API + path, Object.assign({}, opts, {
+    headers: Object.assign({
+      'Authorization': 'Bearer ' + gh.token,
+      'Accept': 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28'
+    }, opts.headers || {})
+  }));
+}
+const b64enc = s => btoa(String.fromCharCode(...new TextEncoder().encode(s)));
+const b64dec = s => new TextDecoder().decode(Uint8Array.from(atob(s.replace(/\n/g,'')), ch => ch.charCodeAt(0)));
+
+/* ---------- connect: verify the token holder actually owns/can push to this repo ---------- */
+$('connectBtn').addEventListener('click', async () => {
+  gh.owner = $('ghOwner').value.trim(); gh.repo = $('ghRepo').value.trim();
+  gh.branch = $('ghBranch').value.trim() || 'main'; gh.token = $('ghToken').value.trim();
+  const st = $('connectStatus');
+  if (!gh.owner || !gh.repo || !gh.token){ st.className='status err'; st.textContent='Fill owner, repo and token.'; return; }
+  st.className='status busy'; st.textContent='Verifying access…';
+  try {
+    const repoRes = await ghFetch(`/repos/${gh.owner}/${gh.repo}`);
+    if (repoRes.status === 401){ throw new Error('Token rejected by GitHub. Check it and try again.'); }
+    if (repoRes.status === 404){ throw new Error('Repo not found — or the token has no access to it.'); }
+    const repo = await repoRes.json();
+    if (!repo.permissions || !repo.permissions.push){
+      throw new Error('This token cannot write to the repo. Admin access denied.');
+    }
+    const meRes = await ghFetch('/user'); const me = meRes.ok ? await meRes.json() : {login:'(unknown)'};
+    st.className='status busy'; st.textContent='Access verified. Loading content.json…';
+    const fileRes = await ghFetch(`/repos/${gh.owner}/${gh.repo}/contents/content.json?ref=${gh.branch}`);
+    if (!fileRes.ok) throw new Error('content.json not found on branch "' + gh.branch + '".');
+    const file = await fileRes.json();
+    fileSha = file.sha;
+    const content = JSON.parse(b64dec(file.content));
+    if ($('rememberTok').checked){ try{ sessionStorage.setItem('ghAdmin', JSON.stringify(gh)); }catch(e){} }
+    else { try{ sessionStorage.removeItem('ghAdmin'); }catch(e){} }
+    fillEditor(content);
+    $('whoLine').innerHTML = 'Signed in as <b>' + me.login + '</b> · editing <b>' + gh.owner + '/' + gh.repo + '</b> @ ' + gh.branch + ' · write access confirmed';
+    $('connectPanel').style.display='none'; $('editor').style.display='block';
+    st.textContent='';
+  } catch(err){ st.className='status err'; st.textContent = err.message; }
+});
+
+/* ---------- editor fill / collect ---------- */
+function fillEditor(c){
+  $('f_greet').value = c.hero.greet; $('f_name').value = c.hero.name;
+  $('f_rolePrefix').value = c.hero.rolePrefix; $('f_avail').value = c.hero.avail;
+  $('f_roles').value = c.hero.roles.join('\n'); $('f_tagline').value = c.hero.tagline;
+  $('f_email').value = c.contact.email; $('f_phone').value = c.contact.phone;
+  $('f_phoneDisplay').value = c.contact.phoneDisplay; $('f_location').value = c.contact.location;
+  $('f_linkedin').value = c.contact.linkedin; $('f_github').value = c.contact.github;
+  $('f_paras').value = c.about.paras.join('\n');
+  $('f_stats').value = c.about.stats.map(s => s.value + ' | ' + s.label).join('\n');
+  $('f_achievements').value = c.achievements.join('\n');
+  $('skillList').innerHTML=''; c.skills.forEach(addSkillCard);
+  $('jobList').innerHTML=''; c.jobs.forEach(addJobCard);
+  $('eduList').innerHTML=''; c.education.forEach(addEduCard);
+}
+function addSkillCard(g={group:'',items:[]}){
+  const d = document.createElement('div'); d.className='skill-card';
+  d.innerHTML = `<div class="card-head"><b>skill group</b><button class="btn btn-danger" type="button">remove</button></div>
+    <label>Group name</label><input class="sg" value="${escAttr(g.group)}" />
+    <label>Items (one per line)</label><textarea class="si mono">${escText(g.items.join('\n'))}</textarea>`;
+  d.querySelector('.btn-danger').onclick = () => d.remove();
+  $('skillList').appendChild(d);
+}
+function jobToText(j){
+  return (j.sections||[]).map(s => (s.project ? '## ' + s.project + '\n' : '') + (s.bullets||[]).join('\n')).join('\n');
+}
+function addJobCard(j={title:'',org:'',meta:'',current:false,sections:[{project:'',bullets:[]}]}){
+  const d = document.createElement('div'); d.className='job-card';
+  d.innerHTML = `<div class="card-head"><b>role</b><button class="btn btn-danger" type="button">remove</button></div>
+    <div class="row"><div><label>Job title</label><input class="jt" value="${escAttr(j.title)}" /></div>
+    <div><label>Company (client)</label><input class="jo" value="${escAttr(j.org)}" /></div></div>
+    <label>Dates &amp; place (e.g. 03/2024 – 01/2025 · Bengaluru)</label><input class="jm" value="${escAttr(j.meta)}" />
+    <div class="checkline"><input type="checkbox" class="jc" ${j.current?'checked':''} /> <span>Current role (shows NOW badge)</span></div>
+    <label>Content — ## project lines + bullet lines</label><textarea class="jb mono" style="min-height:120px">${escText(jobToText(j))}</textarea>`;
+  d.querySelector('.btn-danger').onclick = () => d.remove();
+  $('jobList').appendChild(d);
+}
+function addEduCard(e={degree:'',school:'',years:''}){
+  const d = document.createElement('div'); d.className='edu-card';
+  d.innerHTML = `<div class="card-head"><b>education</b><button class="btn btn-danger" type="button">remove</button></div>
+    <div class="row"><div><label>Degree</label><input class="ed" value="${escAttr(e.degree)}" /></div>
+    <div><label>School</label><input class="es" value="${escAttr(e.school)}" /></div></div>
+    <label>Years</label><input class="ey" value="${escAttr(e.years)}" />`;
+  d.querySelector('.btn-danger').onclick = () => d.remove();
+  $('eduList').appendChild(d);
+}
+$('addSkill').onclick = () => addSkillCard();
+$('addJob').onclick = () => addJobCard();
+$('addEdu').onclick = () => addEduCard();
+function escAttr(s){ return String(s??'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;'); }
+function escText(s){ return String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+const lines = v => v.split('\n').map(x=>x.trim()).filter(Boolean);
+
+function collect(){
+  const c = {
+    hero: { avail:$('f_avail').value.trim(), greet:$('f_greet').value.trim(), name:$('f_name').value.trim(),
+      rolePrefix:$('f_rolePrefix').value, roles:lines($('f_roles').value), tagline:$('f_tagline').value.trim() },
+    contact: { email:$('f_email').value.trim(), phone:$('f_phone').value.trim(),
+      phoneDisplay:$('f_phoneDisplay').value.trim(), linkedin:$('f_linkedin').value.trim(),
+      github:$('f_github').value.trim(), location:$('f_location').value.trim() },
+    about: { paras:lines($('f_paras').value),
+      stats:lines($('f_stats').value).map(l => { const p = l.split('|'); return {value:(p[0]||'').trim(), label:(p.slice(1).join('|')||'').trim()}; }) },
+    skills: [...document.querySelectorAll('.skill-card')].map(d => ({
+      group:d.querySelector('.sg').value.trim(), items:lines(d.querySelector('.si').value) })),
+    jobs: [...document.querySelectorAll('.job-card')].map(d => {
+      const sections = []; let cur = {project:'', bullets:[]};
+      lines(d.querySelector('.jb').value).forEach(l => {
+        if (l.startsWith('##')){ if (cur.bullets.length || cur.project) sections.push(cur); cur = {project:l.replace(/^##\s*/,''), bullets:[]}; }
+        else cur.bullets.push(l.replace(/^[-•▸]\s*/,''));
+      });
+      if (cur.bullets.length || cur.project) sections.push(cur);
+      return { title:d.querySelector('.jt').value.trim(), org:d.querySelector('.jo').value.trim(),
+        meta:d.querySelector('.jm').value.trim(), current:d.querySelector('.jc').checked, sections };
+    }),
+    education: [...document.querySelectorAll('.edu-card')].map(d => ({
+      degree:d.querySelector('.ed').value.trim(), school:d.querySelector('.es').value.trim(), years:d.querySelector('.ey').value.trim() })),
+    achievements: lines($('f_achievements').value)
+  };
+  return c;
+}
+
+/* ---------- save = commit to GitHub ---------- */
+$('saveBtn').addEventListener('click', async () => {
+  const st = $('saveStatus');
+  const c = collect();
+  if (!c.hero.name || !c.contact.email){ st.className='status err'; st.textContent='Name and email cannot be empty.'; return; }
+  st.className='status busy'; st.textContent='Committing to GitHub…';
+  try {
+    const body = {
+      message: 'Update site content via admin portal',
+      content: b64enc(JSON.stringify(c, null, 2) + '\n'),
+      branch: gh.branch
+    };
+    if (fileSha) body.sha = fileSha;
+    const res = await ghFetch(`/repos/${gh.owner}/${gh.repo}/contents/content.json`, {
+      method:'PUT', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body)
+    });
+    const out = await res.json();
+    if (!res.ok) throw new Error(out.message || 'Commit failed');
+    fileSha = out.content.sha;
+    st.className='status ok'; st.textContent='✔ Saved. GitHub Pages redeploys in ~1 minute — then hard-refresh the site.';
+  } catch(err){
+    st.className='status err';
+    st.textContent = /sha/i.test(err.message) ? 'Conflict: file changed on GitHub. Reload this page and re-apply edits.' : err.message;
+  }
+});
+
+/* backup download */
+$('downloadBtn').addEventListener('click', () => {
+  const blob = new Blob([JSON.stringify(collect(), null, 2)], {type:'application/json'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'content.json'; a.click();
+  URL.revokeObjectURL(a.href);
+});
+</script>
+</body>
+</html>

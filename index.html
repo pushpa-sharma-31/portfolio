@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pushpa Sharma — AI/ML Engineer · Gen AI · Agentic AI · LLM Systems</title>
+<meta name="description" content="Pushpa Sharma — AI/ML Engineer in Bengaluru building production Gen AI, Agentic AI, and LLM systems for banking, automotive, and healthcare." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+:root{
+  /* dark — "forest night" (default) */
+  --bg:#0F1412;
+  --surface:#161D19;
+  --surface-2:#1C2620;
+  --line:#28342D;
+  --ink:#E9EDE9;
+  --muted:#8FA096;
+  --acc:#8FC7A8;        /* eucalyptus */
+  --acc-soft:#A9D8BE;
+  --acc-2:#E3B65D;      /* honey */
+  --ok:#7FD99A;
+  --on-acc:#0F1412;     /* text on accent fills */
+  --nav-bg:rgba(15,20,18,.82);
+  --panel-tint:rgba(15,20,18,.65);
+  --shadow:rgba(0,0,0,.45);
+  --bot-shell:#223229;
+  --bot-face:#0B100D;
+  --glow-op:.14;
+  --radius:14px;
+  --display:"Space Grotesk",sans-serif;
+  --body:"IBM Plex Sans",sans-serif;
+  --mono:"IBM Plex Mono",monospace;
+}
+[data-theme="light"]{
+  /* light — "morning mist" */
+  --bg:#F5F6F2;
+  --surface:#FFFFFF;
+  --surface-2:#ECEFE8;
+  --line:#DDE3DA;
+  --ink:#242E28;
+  --muted:#68756D;
+  --acc:#3E7C5F;
+  --acc-soft:#2F664C;
+  --acc-2:#A8761C;
+  --ok:#2F8F5B;
+  --on-acc:#FFFFFF;
+  --nav-bg:rgba(245,246,242,.85);
+  --panel-tint:rgba(255,255,255,.7);
+  --shadow:rgba(38,48,42,.14);
+  --bot-shell:#E9EDE7;
+  --bot-face:#2B352F;
+  --glow-op:.1;
+}
+html.theme-anim, html.theme-anim body, html.theme-anim *{transition:background-color .35s ease,border-color .35s ease,color .35s ease}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.6;-webkit-font-smoothing:antialiased}
+::selection{background:var(--acc);color:var(--on-acc)}
+a{color:var(--acc);text-decoration:none}
+:focus-visible{outline:2px solid var(--acc-2);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1060px;margin:0 auto;padding:0 24px}
+
+/* ---------- nav ---------- */
+nav{position:sticky;top:0;z-index:50;background:var(--nav-bg);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{display:flex;align-items:center;gap:11px;color:var(--ink)}
+.monogram{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:.95rem;color:var(--on-acc);background:linear-gradient(135deg,var(--acc),var(--acc-2));box-shadow:0 4px 14px var(--shadow)}
+.logo-text{font-family:var(--display);font-size:1rem;line-height:1.1;letter-spacing:.01em}
+.logo-text b{color:var(--acc);font-weight:700}
+.logo-text small{display:block;font-family:var(--mono);font-size:.62rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-top:2px}
+.nav-links{display:flex;gap:26px;align-items:center}
+.nav-links a{color:var(--muted);font-size:.92rem;transition:color .2s}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{font-family:var(--mono);font-size:.85rem;color:var(--on-acc)!important;background:var(--acc);padding:8px 16px;border-radius:999px;transition:background .2s}
+.nav-cta:hover{background:var(--acc-soft);color:var(--on-acc)!important}
+.burger{display:none;background:none;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:8px 10px;font-family:var(--mono);cursor:pointer}
+.theme-toggle{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--acc-2);font-size:1.05rem;cursor:pointer;display:grid;place-items:center;transition:border-color .2s,transform .3s}
+.theme-toggle:hover{border-color:var(--acc);transform:rotate(24deg)}
+.tt-icon{line-height:1;transform:translateY(-1px)}
+
+/* ---------- hero ---------- */
+header{padding:72px 0 64px;position:relative;overflow:hidden}
+.grid-bg{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:56px 56px;opacity:.18;mask-image:radial-gradient(ellipse 80% 70% at 50% 0%,#000 30%,transparent 75%)}
+.glow{position:absolute;border-radius:50%;filter:blur(90px);opacity:var(--glow-op);pointer-events:none}
+.glow-a{width:480px;height:480px;background:var(--acc);top:-140px;right:-80px}
+.glow-b{width:360px;height:360px;background:var(--acc-2);bottom:-160px;left:-120px;opacity:calc(var(--glow-op)*.6)}
+.hero{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;margin-bottom:48px}
+.avail-pill{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:.74rem;color:var(--ok);border:1px solid color-mix(in srgb,var(--ok) 40%,transparent);background:color-mix(in srgb,var(--ok) 8%,transparent);border-radius:999px;padding:6px 14px;margin-bottom:22px}
+.pulse{width:8px;height:8px;border-radius:50%;background:var(--ok);animation:pulse 2s ease-out infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--ok) 55%,transparent)}70%{box-shadow:0 0 0 9px color-mix(in srgb,var(--ok) 0%,transparent)}100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--ok) 0%,transparent)}}
+.greet{font-family:var(--mono);font-size:.95rem;color:var(--muted);margin-bottom:6px}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(2.7rem,6vw,4.4rem);line-height:1.04;letter-spacing:-.025em;margin-bottom:12px}
+.grad-name{background:linear-gradient(100deg,var(--ink) 15%,var(--acc) 55%,var(--acc-2) 95%);-webkit-background-clip:text;background-clip:text;color:transparent}
+h1 .accent,.role-line .accent{color:var(--acc)}
+.role-line{font-family:var(--mono);font-size:1.02rem;color:var(--ink);margin-bottom:18px;min-height:1.7em}
+.role-caret{display:inline-block;width:9px;height:17px;background:var(--acc-2);vertical-align:-2px;margin-left:3px;animation:blink 1s steps(1) infinite}
+.tagline{color:var(--muted);font-size:1.06rem;max-width:46ch;margin-bottom:30px}
+.hero-social{display:flex;gap:12px;margin-top:26px}
+.hero-social a{width:42px;height:42px;border-radius:12px;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;font-family:var(--mono);font-size:.85rem;color:var(--muted);transition:border-color .2s,color .2s,transform .15s}
+.hero-social a:hover{border-color:var(--acc);color:var(--acc);transform:translateY(-2px)}
+/* 3D avatar panel */
+.avatar-panel{position:relative;border:1px solid var(--line);border-radius:20px;background:radial-gradient(120% 100% at 50% 0%,var(--surface-2) 0%,var(--surface) 60%,var(--bg) 100%);box-shadow:0 24px 60px var(--shadow),inset 0 1px 0 color-mix(in srgb,var(--ink) 6%,transparent);overflow:hidden;aspect-ratio:1/1.02;max-height:480px}
+.avatar-panel::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:34px 34px;opacity:.22;mask-image:radial-gradient(circle at 50% 45%,transparent 32%,#000 90%)}
+.hero-illo{position:absolute;inset:0;width:100%;height:100%;display:block}
+.float-a{animation:floaty 5s ease-in-out infinite}
+.float-b{animation:floaty 6.2s ease-in-out 1s infinite}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.twinkle{animation:twinkle 3.4s ease-in-out infinite}
+.twinkle-b{animation:twinkle 4.2s ease-in-out 1.4s infinite}
+@keyframes twinkle{0%,100%{opacity:1}50%{opacity:.35}}
+.glow-pulse{animation:glowp 3.2s ease-in-out infinite}
+@keyframes glowp{0%,100%{opacity:.95}50%{opacity:.55}}
+.steam{animation:steam 3s ease-in-out infinite}
+.steam-2{animation-delay:1.2s}
+@keyframes steam{0%,100%{transform:translateY(0);opacity:.7}50%{transform:translateY(-5px);opacity:.25}}
+.eye{transform-box:fill-box;transform-origin:center;animation:blinkEyes 5s steps(1) infinite}
+@keyframes blinkEyes{0%,92%,100%{transform:scaleY(1)}94%,96%{transform:scaleY(.1)}}
+@media (prefers-reduced-motion:reduce){.float-a,.float-b,.twinkle,.twinkle-b,.glow-pulse,.steam,.eye{animation:none}}
+.avatar-caption{position:absolute;left:14px;bottom:12px;font-family:var(--mono);font-size:.72rem;color:var(--ink);background:var(--panel-tint);border:1px solid var(--line);border-radius:999px;padding:5px 13px;backdrop-filter:blur(6px)}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:.9rem;padding:12px 22px;border-radius:999px;border:1px solid var(--line);color:var(--ink);cursor:pointer;background:var(--surface);transition:transform .15s,border-color .2s,background .2s}
+.btn:hover{transform:translateY(-2px);border-color:var(--acc)}
+.btn-primary{background:var(--acc);border-color:var(--acc);color:var(--on-acc)}
+.btn-primary:hover{background:var(--acc-soft)}
+.btn-orange{background:transparent;border-color:var(--acc-2);color:var(--acc-2)}
+.btn-orange:hover{background:color-mix(in srgb,var(--acc-2) 12%,transparent)}
+
+/* terminal — the signature */
+.term{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 24px 60px var(--shadow);overflow:hidden}
+.term-bar{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid var(--line);background:var(--surface-2)}
+.dot{width:11px;height:11px;border-radius:50%}
+.dot:nth-child(1){background:#FF6B6B}.dot:nth-child(2){background:#FFC24B}.dot:nth-child(3){background:var(--ok)}
+.term-title{font-family:var(--mono);font-size:.75rem;color:var(--muted);margin-left:8px}
+.term-body{font-family:var(--mono);font-size:.83rem;line-height:1.85;padding:20px 22px;min-height:300px}
+.t-line{white-space:pre-wrap;word-break:break-word}
+.t-prompt{color:var(--acc-2)}
+.t-key{color:var(--acc)}
+.t-str{color:var(--ok)}
+.t-dim{color:var(--muted)}
+.cursor{display:inline-block;width:8px;height:15px;background:var(--acc);vertical-align:-2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+
+/* ---------- sections ---------- */
+section{padding:76px 0;border-top:1px solid var(--line)}
+.sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:40px}
+.sec-tag{font-family:var(--mono);font-size:.78rem;color:var(--acc-2)}
+h2{font-family:var(--display);font-weight:700;font-size:clamp(1.5rem,3vw,2.1rem);letter-spacing:-.01em}
+
+/* about */
+.about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:48px}
+.about-grid p{color:var(--muted);font-size:1.02rem;margin-bottom:16px}
+.about-grid p strong{color:var(--ink);font-weight:600}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-content:start}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+.stat b{display:block;font-family:var(--display);font-size:1.9rem;color:var(--acc);line-height:1.15}
+.stat span{font-size:.85rem;color:var(--muted)}
+
+/* skills */
+.stack{display:grid;gap:14px}
+.stack-row{display:grid;grid-template-columns:180px 1fr;gap:18px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;transition:border-color .2s}
+.stack-row:hover{border-color:var(--acc)}
+.stack-name{font-family:var(--mono);font-size:.82rem;color:var(--acc-2);padding-top:6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-family:var(--mono);font-size:.78rem;color:var(--ink);background:var(--surface-2);border:1px solid var(--line);border-radius:999px;padding:6px 13px;transition:border-color .2s,color .2s}
+.chip:hover{border-color:var(--acc);color:var(--acc)}
+
+/* experience timeline */
+.timeline{position:relative;padding-left:34px}
+.timeline::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--acc),var(--acc-2))}
+.job{position:relative;margin-bottom:34px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px 28px;transition:transform .2s,border-color .2s}
+.job:hover{transform:translateX(4px);border-color:var(--acc)}
+.job::before{content:"";position:absolute;left:-33px;top:32px;width:12px;height:12px;border-radius:50%;background:var(--bg);border:3px solid var(--acc)}
+.job.now::before{border-color:var(--acc-2);box-shadow:0 0 0 5px color-mix(in srgb,var(--acc-2) 18%,transparent)}
+.job-top{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:6px}
+.job h3{font-family:var(--display);font-size:1.16rem;font-weight:700}
+.job .org{color:var(--acc);font-weight:600}
+.job-meta{font-family:var(--mono);font-size:.78rem;color:var(--muted);white-space:nowrap;padding-top:5px}
+.badge-now{font-family:var(--mono);font-size:.68rem;color:var(--on-acc);background:var(--acc-2);border-radius:999px;padding:2px 9px;margin-left:8px;vertical-align:2px}
+.proj{font-family:var(--mono);font-size:.8rem;color:var(--acc-2);margin:14px 0 6px}
+.job ul{list-style:none;margin-top:8px}
+.job li{color:var(--muted);font-size:.95rem;padding-left:20px;position:relative;margin-bottom:8px}
+.job li::before{content:"▸";position:absolute;left:0;color:var(--acc)}
+
+/* education */
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px 26px}
+.card h3{font-family:var(--display);font-size:1.05rem;margin-bottom:4px}
+.card .sub{color:var(--muted);font-size:.9rem}
+.card .yr{font-family:var(--mono);font-size:.76rem;color:var(--acc-2);margin-top:10px}
+.ach li{color:var(--muted);font-size:.94rem;list-style:none;padding-left:20px;position:relative;margin-bottom:10px}
+.ach li::before{content:"◆";position:absolute;left:0;color:var(--acc-2);font-size:.7rem;top:5px}
+.ach b{color:var(--ink)}
+
+/* contact */
+.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:48px}
+.contact-info p{color:var(--muted);margin-bottom:26px;max-width:40ch}
+.c-links{display:grid;gap:12px}
+.c-link{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:15px 18px;color:var(--ink);font-family:var(--mono);font-size:.85rem;transition:border-color .2s,transform .15s}
+.c-link:hover{border-color:var(--acc);transform:translateY(-2px)}
+.c-link .ico{width:36px;height:36px;border-radius:10px;background:var(--surface-2);display:grid;place-items:center;color:var(--acc);flex-shrink:0}
+.c-link.call .ico{color:var(--acc-2)}
+form{display:grid;gap:14px}
+label{font-family:var(--mono);font-size:.76rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+input,textarea{width:100%;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:13px 15px;color:var(--ink);font-family:var(--body);font-size:.95rem;transition:border-color .2s}
+input:focus,textarea:focus{outline:none;border-color:var(--acc)}
+textarea{min-height:130px;resize:vertical}
+.form-status{font-family:var(--mono);font-size:.82rem;min-height:22px}
+.form-status.ok{color:var(--ok)}
+.form-status.err{color:#FF6B6B}
+
+footer{border-top:1px solid var(--line);padding:34px 0;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--muted);font-family:var(--mono);font-size:.78rem}
+
+/* reveal on scroll */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .cursor{animation:none}
+  *{scroll-behavior:auto!important;transition:none!important}
+}
+
+/* responsive */
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr}
+  .avatar-panel{max-width:420px;margin:0 auto;width:100%}
+  .logo-text small{display:none}
+  .about-grid,.contact-grid,.edu-grid{grid-template-columns:1fr}
+  .stack-row{grid-template-columns:1fr;gap:10px}
+  .nav-links{display:none;position:absolute;top:64px;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--line);flex-direction:column;padding:20px 24px;align-items:flex-start}
+  .nav-links.open{display:flex}
+  .burger{display:block}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-in">
+    <a class="logo" href="#top" aria-label="Home">
+      <span class="monogram">PS</span>
+      <span class="logo-text">Pushpa <b>Sharma</b><small>AI/ML Engineer</small></span>
+    </a>
+    <div style="display:flex;align-items:center;gap:10px">
+      <button class="theme-toggle" id="themeToggle" aria-label="Switch between dark and bright theme" title="Switch theme">
+        <span class="tt-icon" aria-hidden="true">☾</span>
+      </button>
+      <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false">menu</button>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a class="nav-cta" href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header id="top">
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="glow glow-a" aria-hidden="true"></div>
+  <div class="glow glow-b" aria-hidden="true"></div>
+  <div class="wrap hero">
+    <div>
+      <span class="avail-pill"><span class="pulse"></span> <span id="cmsAvail">Open to opportunities</span></span>
+      <p class="greet" id="cmsGreet">Hello, I'm</p>
+      <h1><span class="grad-name" id="cmsName">Pushpa Sharma</span></h1>
+      <p class="role-line"><span id="cmsRolePrefix">AI/ML Engineer — </span><span id="roleWord" class="accent">Agentic AI</span><span class="role-caret"></span></p>
+      <p class="tagline" id="cmsTagline">9 years of software engineering, 3+ years designing end-to-end Gen AI systems: RAG pipelines, multi-agent workflows, and conversational AI for banking, automotive, and healthcare.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="Pushpa_Sharma_Resume.pdf" download="Pushpa_Sharma_Resume.pdf">↓ Download resume</a>
+        <a class="btn" href="#contact">Send a message</a>
+        <a class="btn btn-orange" href="tel:+918197709916">✆ Call me</a>
+      </div>
+      <div class="hero-social">
+        <a href="https://github.com/pushpa-sharma-31" target="_blank" rel="noopener" aria-label="GitHub">&lt;/&gt;</a>
+        <a href="https://linkedin.com/in/pushpa-sharma-bbab56125" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+        <a href="mailto:pushpa2431sharma@gmail.com" aria-label="Email">✉</a>
+      </div>
+    </div>
+    <div class="avatar-panel" id="avatarPanel" aria-label="Illustration of Pushpa working behind her laptop, surrounded by AI interface elements">
+      <svg class="hero-illo" viewBox="0 0 520 520" xmlns="http://www.w3.org/2000/svg" role="img">
+        <defs>
+          <radialGradient id="haloGrad" cx="50%" cy="42%" r="55%">
+            <stop offset="0%" stop-color="var(--acc)" stop-opacity=".22"/>
+            <stop offset="100%" stop-color="var(--acc)" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="lidGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="var(--bot-shell)"/>
+            <stop offset="100%" stop-color="var(--surface-2)"/>
+          </linearGradient>
+        </defs>
+
+        <!-- halo + orbit -->
+        <circle cx="260" cy="235" r="185" fill="url(#haloGrad)"/>
+        <circle cx="260" cy="235" r="205" fill="none" stroke="var(--acc)" stroke-opacity=".25" stroke-width="1.5" stroke-dasharray="3 9"/>
+
+        <!-- sparkles -->
+        <g fill="var(--acc-2)" class="twinkle">
+          <path d="M96 150 l4 10 10 4 -10 4 -4 10 -4 -10 -10 -4 10 -4z"/>
+          <path d="M432 130 l3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3z" opacity=".8"/>
+          <path d="M448 300 l3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3z" opacity=".6"/>
+        </g>
+        <g fill="var(--acc)" class="twinkle-b">
+          <path d="M70 290 l3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3z" opacity=".7"/>
+          <path d="M410 215 l2.5 6 6 2.5 -6 2.5 -2.5 6 -2.5 -6 -6 -2.5 6 -2.5z" opacity=".8"/>
+        </g>
+
+        <!-- hair behind shoulders -->
+        <path d="M198 240 q-10 70 6 108 l32 0 q-16 -50 -10 -96z" fill="#4A3728"/>
+        <path d="M322 240 q10 70 -6 108 l-32 0 q16 -50 10 -96z" fill="#4A3728"/>
+
+        <!-- shoulders / sweater -->
+        <path d="M160 372 q0 -74 52 -96 l96 0 q52 22 52 96z" fill="var(--acc)"/>
+        <path d="M160 372 q0 -74 52 -96 l14 0 q-40 30 -38 96z" fill="#000" opacity=".12"/>
+
+        <!-- neck + head -->
+        <rect x="242" y="228" width="36" height="34" rx="14" fill="#E9B48C"/>
+        <circle cx="260" cy="196" r="46" fill="#EFBE96"/>
+
+        <!-- hair top + bun -->
+        <path d="M214 196 a46 46 0 0 1 92 0 l0 -8 q-6 -50 -46 -50 t-46 50z" fill="#4A3728"/>
+        <path d="M214 194 q-4 -26 14 -40 q-6 22 2 34z" fill="#4A3728"/>
+        <path d="M306 194 q4 -26 -14 -40 q6 22 -2 34z" fill="#4A3728"/>
+        <circle cx="260" cy="140" r="19" fill="#4A3728"/>
+        <circle cx="260" cy="140" r="19" fill="none" stroke="var(--acc-2)" stroke-width="2.5" stroke-dasharray="4 6" opacity=".9"/>
+
+        <!-- face -->
+        <g class="face">
+          <!-- glasses -->
+          <circle cx="241" cy="198" r="13" fill="none" stroke="#3A3330" stroke-width="2.6"/>
+          <circle cx="279" cy="198" r="13" fill="none" stroke="#3A3330" stroke-width="2.6"/>
+          <path d="M254 198 h12" stroke="#3A3330" stroke-width="2.6"/>
+          <!-- eyes -->
+          <circle class="eye" cx="241" cy="199" r="3.4" fill="#2E2A26"/>
+          <circle class="eye" cx="279" cy="199" r="3.4" fill="#2E2A26"/>
+          <!-- brows -->
+          <path d="M232 182 q9 -5 17 -1" stroke="#4A3728" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M271 181 q8 -4 17 1" stroke="#4A3728" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <!-- blush + smile -->
+          <ellipse cx="231" cy="213" rx="6.5" ry="4" fill="#E89B77" opacity=".55"/>
+          <ellipse cx="289" cy="213" rx="6.5" ry="4" fill="#E89B77" opacity=".55"/>
+          <path d="M251 221 q9 8 18 0" stroke="#B76A4C" stroke-width="3" fill="none" stroke-linecap="round"/>
+        </g>
+        <!-- screen glow on face -->
+        <ellipse cx="260" cy="230" rx="52" ry="26" fill="var(--acc)" opacity=".1" class="glow-pulse"/>
+
+        <!-- laptop lid (facing viewer) -->
+        <g>
+          <rect x="178" y="258" width="164" height="112" rx="12" fill="url(#lidGrad)" stroke="var(--line)" stroke-width="2"/>
+          <path class="logo-spark glow-pulse" d="M260 296 l6 14 14 6 -14 6 -6 14 -6 -14 -14 -6 14 -6z" fill="var(--acc-2)"/>
+        </g>
+
+        <!-- desk -->
+        <rect x="52" y="368" width="416" height="16" rx="8" fill="var(--bot-shell)" stroke="var(--line)" stroke-width="1.5"/>
+
+        <!-- coffee -->
+        <g>
+          <rect x="392" y="336" width="30" height="32" rx="6" fill="var(--surface-2)" stroke="var(--line)" stroke-width="2"/>
+          <path d="M422 344 q14 4 0 16" fill="none" stroke="var(--line)" stroke-width="3"/>
+          <path class="steam" d="M402 326 q4 -8 0 -14 q-4 -6 0 -12" fill="none" stroke="var(--muted)" stroke-width="2.5" stroke-linecap="round" opacity=".7"/>
+          <path class="steam steam-2" d="M412 328 q4 -7 0 -13" fill="none" stroke="var(--muted)" stroke-width="2.5" stroke-linecap="round" opacity=".5"/>
+        </g>
+
+        <!-- plant -->
+        <g>
+          <path d="M104 342 q-14 -22 -4 -40 q14 10 12 40z" fill="var(--acc)" opacity=".85"/>
+          <path d="M116 342 q2 -26 18 -34 q6 18 -8 34z" fill="var(--acc)" opacity=".6"/>
+          <rect x="98" y="340" width="32" height="28" rx="5" fill="var(--surface-2)" stroke="var(--line)" stroke-width="2"/>
+        </g>
+
+        <!-- floating chat card (left) -->
+        <g class="float-a">
+          <rect x="52" y="182" width="132" height="64" rx="14" fill="var(--surface)" stroke="var(--line)" stroke-width="1.5"/>
+          <path d="M74 246 l10 14 6 -14z" fill="var(--surface)" stroke="var(--line)" stroke-width="1.5"/>
+          <path d="M70 202 l3.5 8 8 3.5 -8 3.5 -3.5 8 -3.5 -8 -8 -3.5 8 -3.5z" fill="var(--acc-2)"/>
+          <rect x="92" y="200" width="76" height="7" rx="3.5" fill="var(--acc)" opacity=".9"/>
+          <rect x="92" y="214" width="58" height="7" rx="3.5" fill="var(--muted)" opacity=".55"/>
+          <rect x="92" y="228" width="66" height="7" rx="3.5" fill="var(--muted)" opacity=".35"/>
+        </g>
+
+        <!-- floating agent-graph card (right) -->
+        <g class="float-b">
+          <rect x="352" y="158" width="120" height="88" rx="14" fill="var(--surface)" stroke="var(--line)" stroke-width="1.5"/>
+          <path d="M382 186 L412 176 M412 176 L442 190 M412 176 L412 222" stroke="var(--acc)" stroke-width="2" opacity=".7"/>
+          <circle cx="382" cy="186" r="7" fill="var(--acc)"/>
+          <circle cx="442" cy="190" r="7" fill="var(--acc)"/>
+          <circle cx="412" cy="222" r="7" fill="var(--acc-2)"/>
+          <circle cx="412" cy="176" r="9" fill="var(--acc-2)"/>
+          <text x="412" y="180" text-anchor="middle" font-family="var(--mono)" font-size="10" fill="var(--on-acc)">✦</text>
+        </g>
+      </svg>
+      <div class="avatar-caption"><span class="t-dim">status:</span> building agents <span class="t-dim">·</span> <span style="color:var(--ok)">online</span></div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="term reveal in" aria-label="Animated agent trace introducing Pushpa">
+      <div class="term-bar">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span class="term-title">agent_trace — langgraph · pushpa.sharma</span>
+      </div>
+      <div class="term-body" id="termBody"></div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-tag">01 · summary</span><h2>About</h2></div>
+    <div class="about-grid">
+      
+      <div class="reveal" id="cmsAboutParas">
+        <p>AI Engineer with <strong>9 years of software engineering experience</strong>, including <strong>3+ years building production Gen AI, Agentic AI, and ML applications</strong> for banking, automotive, and healthcare clients.</p>
+        <p>I design and ship end-to-end AI solutions — RAG pipelines, LLM integrations, multi-agent systems, and conversational AI — underpinned by 6 years of full-stack product engineering across banking, healthcare, media, and security domains.</p>
+        <p>Proficient in <strong>Python, LangChain/LangGraph, TensorFlow, PyTorch</strong>, and vector databases, with scalable deployment via <strong>FastAPI, Docker, and Kubernetes</strong>.</p>
+      </div>
+      <div class="stats reveal" id="cmsStats">
+        <div class="stat"><b>9+</b><span>years in software engineering</span></div>
+        <div class="stat"><b>3+</b><span>years shipping Gen AI to prod</span></div>
+        <div class="stat"><b>40%</b><span>model compute time reduced</span></div>
+        <div class="stat"><b>20%</b><span>user engagement increase</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-tag">02 · core skills</span><h2>Stack</h2></div>
+    <div class="stack" id="cmsSkills">
+      <div class="stack-row reveal">
+        <div class="stack-name">gen_ai &amp; agents</div>
+        <div class="chips"><span class="chip">LLM Integration — GPT · Claude · Gemini · Llama</span><span class="chip">Agentic AI</span><span class="chip">RAG &amp; Advanced RAG</span><span class="chip">Prompt Engineering</span><span class="chip">Fine-Tuning</span><span class="chip">Function Calling</span><span class="chip">MCP</span><span class="chip">Semantic Search</span></div>
+      </div>
+      <div class="stack-row reveal">
+        <div class="stack-name">frameworks</div>
+        <div class="chips"><span class="chip">LangChain</span><span class="chip">LangGraph</span><span class="chip">LangSmith</span><span class="chip">LlamaIndex</span><span class="chip">AutoGen</span><span class="chip">CrewAI</span><span class="chip">Hugging Face</span><span class="chip">TensorFlow</span><span class="chip">PyTorch</span><span class="chip">Scikit-learn</span><span class="chip">XGBoost</span></div>
+      </div>
+      <div class="stack-row reveal">
+        <div class="stack-name">data &amp; infra</div>
+        <div class="chips"><span class="chip">Pinecone</span><span class="chip">FAISS</span><span class="chip">Chroma</span><span class="chip">Weaviate</span><span class="chip">PostgreSQL</span><span class="chip">NumPy / Pandas</span><span class="chip">Azure OpenAI</span><span class="chip">AWS Bedrock</span><span class="chip">Databricks</span><span class="chip">Ollama</span></div>
+      </div>
+      <div class="stack-row reveal">
+        <div class="stack-name">engineering</div>
+        <div class="chips"><span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">Flask</span><span class="chip">LLMOps / MLOps</span><span class="chip">CI/CD for LLMs</span><span class="chip">Model Versioning</span><span class="chip">Docker / Kubernetes</span><span class="chip">Git</span><span class="chip">React.js / Next.js</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-tag">03 · experience</span><h2>Where I've shipped</h2></div>
+    <div class="timeline" id="cmsTimeline">
+
+      <article class="job now reveal">
+        <div class="job-top">
+          <h3>AI/ML Engineer — <span class="org">TEKsystems (NatWest Bank)</span><span class="badge-now">NOW</span></h3>
+          <span class="job-meta">2025 – Present · Bengaluru</span>
+        </div>
+        <p class="proj">Agent Toolkit AI — Gen AI modernization of the bank-agent platform</p>
+        <ul>
+          <li>Modernized the legacy Bank Agent Toolkit into an AI-powered application; built RAG pipelines to securely retrieve customer information from internal databases and knowledge sources.</li>
+          <li>Developed AI-powered assistants for income analysis, planning recommendations, and direct-debit setup; built prompt templates and chaining logic with LangChain and LangGraph.</li>
+          <li>Enabled semantic search of financial records with FAISS/vector databases; integrated LLM inference and embeddings via Azure OpenAI and FastAPI.</li>
+        </ul>
+        <p class="proj">Ask Archie — Gen AI employee-support assistant</p>
+        <ul>
+          <li>Built an LLM-based assistant (OpenAI GPT, LangChain, Pinecone/Weaviate) answering workplace queries from company policy docs, FAQs, and the knowledge base via RAG.</li>
+          <li>Designed confidence-based fallback and escalation: low-confidence or dissatisfied users are auto-transferred to live human support over WebSocket/SignalR.</li>
+          <li>Exposed real-time LLM inference and ML models as REST APIs with FastAPI; designed and developed the employee-facing chatbot UI.</li>
+        </ul>
+      </article>
+
+      <article class="job reveal">
+        <div class="job-top">
+          <h3>Senior Software Engineer, AI — <span class="org">Grid Dynamics (Ford)</span></h3>
+          <span class="job-meta">03/2024 – 01/2025 · Bengaluru</span>
+        </div>
+        <p class="proj">Agentic AI vehicle-exploration chatbot</p>
+        <ul>
+          <li>Built an Agentic AI chatbot (GPT-4, Claude, LLaMA with LangChain/LangGraph) that helps customers explore Ford vehicles — design imagery, specs, pricing, and availability.</li>
+          <li>Enabled agent tool-calling against external APIs (availability, pricing, dealership information) via an MCP server; implemented a RAG pipeline over Ford's vehicle database using Pinecone.</li>
+          <li>Optimized models using ensemble techniques, reducing computation time by 40% while maintaining model performance; exposed AI/ML models as FastAPI services.</li>
+          <li>Built the conversational React.js interface and collaborated with UX designers to integrate AI seamlessly into the product experience.</li>
+        </ul>
+      </article>
+
+      <article class="job reveal">
+        <div class="job-top">
+          <h3>Senior Software Engineer — <span class="org">Emids (Humana)</span></h3>
+          <span class="job-meta">08/2022 – 04/2024 · Bengaluru</span>
+        </div>
+        <ul>
+          <li>Integrated an AI system into the Solara single-sign-on portal for medical employees; designed AI algorithms that improved predictive capability on client data (PyTorch, TensorFlow, Hugging Face, vector DBs).</li>
+          <li>Applied prompt engineering to early Gen AI features; developed reusable components in Next.js and React.js and built supporting services in Node.js and Python.</li>
+        </ul>
+      </article>
+
+      <article class="job reveal">
+        <div class="job-top">
+          <h3>Advisory System Analyst — <span class="org">IBM</span></h3>
+          <span class="job-meta">01/2022 – 07/2022 · Bengaluru</span>
+        </div>
+        <ul>
+          <li>Implemented ML/DL models in production (TensorFlow, PyTorch, Scikit-learn, XGBoost) with data processing in NumPy/Pandas, served through FastAPI and Flask.</li>
+          <li>Reduced API errors through Redux-Saga state management and built the React.js data-management UI over PostgreSQL/NoSQL stores.</li>
+        </ul>
+      </article>
+
+      <article class="job reveal">
+        <div class="job-top">
+          <h3>UI Stack Developer — <span class="org">Innominds</span></h3>
+          <span class="job-meta">03/2020 – 01/2022 · Bengaluru</span>
+        </div>
+        <ul>
+          <li>Developed the Vector Flow physical-security platform UI (React.js, Redux, Syncfusion), building reusable static and dynamic components for data-dense operational dashboards.</li>
+        </ul>
+      </article>
+
+      <article class="job reveal">
+        <div class="job-top">
+          <h3>Software Engineer — <span class="org">AH Infotech (Sony Music)</span></h3>
+          <span class="job-meta">05/2017 – 03/2020 · Bengaluru</span>
+        </div>
+        <ul>
+          <li>Delivered the Artist 360 media and entertainment platform end to end, including full CRUD functionality (React.js, Node.js, Express, SQL, REST APIs).</li>
+        </ul>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-tag">04 · education &amp; wins</span><h2>Education &amp; achievements</h2></div>
+    <div class="edu-grid" id="cmsEdu">
+      <div class="card reveal">
+        <h3>Diploma, Data Science &amp; AI</h3>
+        <p class="sub">IIIT Bangalore</p>
+        <p class="yr">2025 – 2026</p>
+      </div>
+      <div class="card reveal">
+        <h3>B.Tech</h3>
+        <p class="sub">Biju Patnaik University of Technology</p>
+        <p class="yr">2012 – 2016</p>
+      </div>
+      <div class="card reveal" style="grid-column:1/-1">
+        <h3 style="margin-bottom:14px">Key achievements</h3>
+        <ul class="ach">
+          <li>Reduced model computation time by <b>40%</b> through ensemble optimization while maintaining accuracy.</li>
+          <li>Increased user engagement by <b>20%</b> by delivering impactful, AI-powered product features.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-tag">05 · contact</span><h2>Let's talk</h2></div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <p>Whether it's a Gen AI build, an agentic system, or a role you think I'd fit — my inbox and phone are open.</p>
+        <div class="c-links">
+          <a class="c-link" href="mailto:pushpa2431sharma@gmail.com">
+            <span class="ico">✉</span> pushpa2431sharma@gmail.com
+          </a>
+          <a class="c-link call" href="tel:+918197709916">
+            <span class="ico">✆</span> +91 81977 09916 — tap to call
+          </a>
+          <a class="c-link" href="https://linkedin.com/in/pushpa-sharma-bbab56125" target="_blank" rel="noopener">
+            <span class="ico">in</span> linkedin.com/in/pushpa-sharma-bbab56125
+          </a>
+          <a class="c-link" href="https://github.com/pushpa-sharma-31" target="_blank" rel="noopener">
+            <span class="ico">&lt;/&gt;</span> github.com/pushpa-sharma-31
+          </a>
+          <a class="c-link" href="Pushpa_Sharma_Resume.pdf" download="Pushpa_Sharma_Resume.pdf">
+            <span class="ico">↓</span> Download resume (PDF)
+          </a>
+        </div>
+      </div>
+      <form id="contactForm" class="reveal" novalidate>
+        <div>
+          <label for="f-name">Your name</label>
+          <input id="f-name" name="name" type="text" required autocomplete="name" placeholder="Ada Lovelace" />
+        </div>
+        <div>
+          <label for="f-email">Your email</label>
+          <input id="f-email" name="email" type="email" required autocomplete="email" placeholder="you@example.com" />
+        </div>
+        <div>
+          <label for="f-msg">Message</label>
+          <textarea id="f-msg" name="message" required placeholder="Hi Pushpa — I'd love to talk about…"></textarea>
+        </div>
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+        <button class="btn btn-primary" type="submit" id="sendBtn">Send message →</button>
+        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:0 24px">
+    <span>© <span id="yr"></span> Pushpa Sharma · Bengaluru, India</span>
+    <span>agent.status = <span style="color:var(--ok)">"open_to_opportunities"</span></span>
+  </div>
+</footer>
+
+<script>
+/* ---------- terminal typing (the signature moment) ---------- */
+const LINES = [
+  {html:'<span class="t-prompt">➜</span> <span class="t-dim">~</span> agent.invoke(<span class="t-str">"introduce"</span>)', d:0},
+  {html:'<span class="t-dim">[trace] loading profile…</span>', d:400},
+  {html:'<span class="t-key">name</span>: <span class="t-str">"Pushpa Sharma"</span>', d:250},
+  {html:'<span class="t-key">role</span>: <span class="t-str">"AI/ML Engineer — Gen AI · Agentic AI"</span>', d:220},
+  {html:'<span class="t-key">experience</span>: <span class="t-str">"9 yrs engineering · 3+ yrs Gen AI in prod"</span>', d:220},
+  {html:'<span class="t-key">domains</span>: [<span class="t-str">"banking"</span>, <span class="t-str">"automotive"</span>, <span class="t-str">"healthcare"</span>]', d:220},
+  {html:'<span class="t-key">tools</span>: [<span class="t-str">"LangGraph"</span>, <span class="t-str">"RAG"</span>, <span class="t-str">"MCP"</span>, <span class="t-str">"FastAPI"</span>, <span class="t-str">"K8s"</span>]', d:220},
+  {html:'<span class="t-dim">[trace] tool_call → open_to_work()</span>', d:420},
+  {html:'<span class="t-prompt">✔</span> status: <span class="t-str">"ready to build"</span> — <a href="#contact">say hello ↓</a>', d:350},
+];
+const termBody = document.getElementById('termBody');
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function typeLine(el, html, done){
+  // type plain-text progressively, then swap in the colored HTML
+  const tmp = document.createElement('div'); tmp.innerHTML = html;
+  const text = tmp.textContent;
+  let i = 0;
+  const cur = document.createElement('span'); cur.className = 'cursor';
+  el.appendChild(cur);
+  const tick = () => {
+    i += Math.random() < .3 ? 2 : 1;
+    el.textContent = text.slice(0, i);
+    el.appendChild(cur);
+    if (i < text.length) setTimeout(tick, 14 + Math.random()*22);
+    else { el.innerHTML = html; done(); }
+  };
+  tick();
+}
+function runTerm(idx){
+  if (idx >= LINES.length){
+    const end = document.createElement('div'); end.className = 't-line';
+    end.innerHTML = '<span class="t-prompt">➜</span> <span class="t-dim">~</span> <span class="cursor"></span>';
+    termBody.appendChild(end);
+    return;
+  }
+  const line = document.createElement('div'); line.className = 't-line';
+  termBody.appendChild(line);
+  if (reduceMotion){ line.innerHTML = LINES[idx].html; runTerm(idx+1); return; }
+  setTimeout(() => typeLine(line, LINES[idx].html, () => runTerm(idx+1)), LINES[idx].d);
+}
+runTerm(0);
+
+/* ---------- scroll reveal ---------- */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+}, {threshold:.12});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* ---------- mobile nav ---------- */
+const burger = document.getElementById('burger'), navLinks = document.getElementById('navLinks');
+burger.addEventListener('click', () => {
+  const open = navLinks.classList.toggle('open');
+  burger.setAttribute('aria-expanded', open);
+});
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+/* ---------- contact form → email (FormSubmit, no backend needed) ---------- */
+let FORM_ENDPOINT = 'https://formsubmit.co/ajax/pushpa2431sharma@gmail.com';
+const form = document.getElementById('contactForm');
+const statusEl = document.getElementById('formStatus');
+const sendBtn = document.getElementById('sendBtn');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  if (!form.reportValidity()) return;
+  const data = Object.fromEntries(new FormData(form).entries());
+  if (data._honey) return; // bot trap
+  statusEl.className = 'form-status'; statusEl.textContent = 'Sending…';
+  sendBtn.disabled = true;
+  try {
+    const res = await fetch(FORM_ENDPOINT, {
+      method: 'POST',
+      headers: {'Content-Type':'application/json','Accept':'application/json'},
+      body: JSON.stringify({
+        name: data.name, email: data.email, message: data.message,
+        _subject: 'Portfolio message from ' + data.name,
+        _template: 'table'
+      })
+    });
+    if (!res.ok) throw new Error('send failed');
+    statusEl.className = 'form-status ok';
+    statusEl.textContent = '✔ Sent — it will land in Pushpa\'s inbox.';
+    form.reset();
+  } catch {
+    // fallback: open the visitor's mail client pre-filled
+    statusEl.className = 'form-status err';
+    statusEl.textContent = 'Direct send failed — opening your email app instead.';
+    const body = encodeURIComponent(data.message + '\n\n— ' + data.name + ' (' + data.email + ')');
+    window.location.href = 'mailto:pushpa2431sharma@gmail.com?subject=' +
+      encodeURIComponent('Portfolio message from ' + data.name) + '&body=' + body;
+  } finally {
+    sendBtn.disabled = false;
+  }
+});
+
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* ---------- dark / bright theme ---------- */
+(function(){
+  const root = document.documentElement;
+  const btn = document.getElementById('themeToggle');
+  const icon = btn.querySelector('.tt-icon');
+  const store = { get(){ try{ return localStorage.getItem('theme'); }catch(e){ return null; } },
+                  set(v){ try{ localStorage.setItem('theme', v); }catch(e){} } };
+  function apply(mode, animate){
+    if (animate){ root.classList.add('theme-anim'); setTimeout(()=>root.classList.remove('theme-anim'), 400); }
+    if (mode === 'light') root.setAttribute('data-theme','light');
+    else root.removeAttribute('data-theme');
+    icon.textContent = mode === 'light' ? '☀' : '☾';
+    btn.setAttribute('aria-label', mode === 'light' ? 'Switch to dark theme' : 'Switch to bright theme');
+    let meta = document.querySelector('meta[name="theme-color"]');
+    if (!meta){ meta = document.createElement('meta'); meta.name = 'theme-color'; document.head.appendChild(meta); }
+    meta.content = getComputedStyle(root).getPropertyValue('--bg').trim();
+    if (window.syncAvatarTheme) window.syncAvatarTheme();
+  }
+  let mode = store.get();
+  if (!mode) mode = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  apply(mode, false);
+  btn.addEventListener('click', () => {
+    mode = root.hasAttribute('data-theme') ? 'dark' : 'light';
+    store.set(mode); apply(mode, true);
+  });
+})();
+
+/* ---------- rotating role typewriter (words come from content.json when loaded) ---------- */
+window.startRoleTypewriter = function(words){
+  const el = document.getElementById('roleWord');
+  if (reduceMotion || !words.length){ el.textContent = words[0] || ''; return; }
+  let w = 0, i = 0, del = false;
+  (function step(){
+    const word = words[w];
+    el.textContent = word.slice(0, i);
+    if (!del && i < word.length){ i++; setTimeout(step, 70); }
+    else if (!del){ del = true; setTimeout(step, 1700); }
+    else if (i > 0){ i--; setTimeout(step, 35); }
+    else { del = false; w = (w+1)%words.length; setTimeout(step, 300); }
+  })();
+};
+
+/* ---------- content.json hydration (edited via admin.html) ---------- */
+(async function(){
+  const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  const rich = s => String(s).replace(/<(?!\/?(strong|b|em|i)\b)[^>]*>/gi,''); // allow only basic emphasis tags
+  let c = null;
+  try {
+    const res = await fetch('content.json', {cache:'no-store'});
+    if (res.ok) c = await res.json();
+  } catch(e) { /* offline or file:// — keep baked-in content */ }
+
+  if (c){
+    try {
+      // hero
+      const set = (id, v) => { const el = document.getElementById(id); if (el && v != null) el.textContent = v; };
+      set('cmsGreet', c.hero.greet); set('cmsName', c.hero.name);
+      set('cmsRolePrefix', c.hero.rolePrefix); set('cmsAvail', c.hero.avail);
+      set('cmsTagline', c.hero.tagline);
+      document.title = c.hero.name + ' — ' + c.hero.rolePrefix.replace(/[—–-]\s*$/,'').trim();
+
+      // about + stats
+      const paras = document.getElementById('cmsAboutParas');
+      if (paras && c.about?.paras) paras.innerHTML = c.about.paras.map(p => '<p>' + rich(p) + '</p>').join('');
+      const stats = document.getElementById('cmsStats');
+      if (stats && c.about?.stats) stats.innerHTML = c.about.stats.map(s =>
+        '<div class="stat"><b>' + esc(s.value) + '</b><span>' + esc(s.label) + '</span></div>').join('');
+
+      // skills
+      const sk = document.getElementById('cmsSkills');
+      if (sk && c.skills) sk.innerHTML = c.skills.map(g =>
+        '<div class="stack-row reveal in"><div class="stack-name">' + esc(g.group) + '</div><div class="chips">' +
+        g.items.map(i => '<span class="chip">' + esc(i) + '</span>').join('') + '</div></div>').join('');
+
+      // experience
+      const tl = document.getElementById('cmsTimeline');
+      if (tl && c.jobs) tl.innerHTML = c.jobs.map(j =>
+        '<article class="job reveal in' + (j.current ? ' now' : '') + '"><div class="job-top"><h3>' +
+        esc(j.title) + ' — <span class="org">' + esc(j.org) + '</span>' +
+        (j.current ? '<span class="badge-now">NOW</span>' : '') + '</h3><span class="job-meta">' + esc(j.meta) +
+        '</span></div>' +
+        (j.sections || []).map(s =>
+          (s.project ? '<p class="proj">' + esc(s.project) + '</p>' : '') +
+          '<ul>' + (s.bullets || []).map(b => '<li>' + rich(b) + '</li>').join('') + '</ul>').join('') +
+        '</article>').join('');
+
+      // education + achievements
+      const edu = document.getElementById('cmsEdu');
+      if (edu && c.education) edu.innerHTML =
+        c.education.map(e => '<div class="card reveal in"><h3>' + esc(e.degree) + '</h3><p class="sub">' +
+          esc(e.school) + '</p><p class="yr">' + esc(e.years) + '</p></div>').join('') +
+        '<div class="card reveal in" style="grid-column:1/-1"><h3 style="margin-bottom:14px">Key achievements</h3><ul class="ach">' +
+        (c.achievements || []).map(a => '<li>' + rich(a) + '</li>').join('') + '</ul></div>';
+
+      // contact everywhere
+      const ct = c.contact || {};
+      document.querySelectorAll('a[href^="mailto:"]').forEach(a => { a.href = 'mailto:' + ct.email; if (a.classList.contains('c-link')) a.innerHTML = '<span class="ico">✉</span> ' + esc(ct.email); });
+      document.querySelectorAll('a[href^="tel:"]').forEach(a => { a.href = 'tel:' + ct.phone; if (a.classList.contains('c-link')) a.innerHTML = '<span class="ico">✆</span> ' + esc(ct.phoneDisplay) + ' — tap to call'; });
+      document.querySelectorAll('a[href*="linkedin.com"]').forEach(a => { a.href = ct.linkedin; if (a.classList.contains('c-link')) a.innerHTML = '<span class="ico">in</span> ' + esc(ct.linkedin.replace(/^https?:\/\//,'')); });
+      document.querySelectorAll('a[href*="github.com"]').forEach(a => { a.href = ct.github; if (a.classList.contains('c-link')) a.innerHTML = '<span class="ico">&lt;/&gt;</span> ' + esc(ct.github.replace(/^https?:\/\//,'')); });
+      if (ct.email) FORM_ENDPOINT = 'https://formsubmit.co/ajax/' + ct.email;
+      const foot = document.querySelector('footer .wrap span');
+      if (foot && ct.location) foot.innerHTML = '© <span id="yr">' + new Date().getFullYear() + '</span> ' + esc(c.hero.name) + ' · ' + esc(ct.location);
+    } catch(e) { console.warn('hydration error', e); }
+  }
+  window.startRoleTypewriter((c && c.hero && c.hero.roles) || ['Agentic AI','Gen AI Systems','RAG Pipelines','LLM Engineering','Multi-Agent Workflows']);
+})();
+</script>
+
+</body>
+</html>
